@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Preloader, Placeholder } from "react-preloading-screen";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+
 import CryptoDetails from "./CryptoDetails";
 import "./App.css";
 
 const App = () => {
   const [data, setData] = useState("");
   const [coinValue, setCoinValue] = useState("");
-
   useEffect(() => {
     let url =
       "https://cors-anywhere.herokuapp.com/https://sandbox-api.coinmarketcap.com/v1/cryptocurrency/listings/latest";
@@ -45,10 +45,10 @@ const App = () => {
                     <tbody>
                       {Array.isArray(data) &&
                         data.map(objects => {
-                          let price = objects.quote.USD.price.toFixed(2);
+                          const price = objects.quote.USD.price.toFixed(2);
                           const result = () => {
                             console.log(price * coinValue);
-                            return <p>{(price * coinValue).toFixed(2)}</p>;
+                            return (<p>{(price * coinValue).toFixed(2)}</p>);
                           };
 
                           return (
@@ -66,15 +66,8 @@ const App = () => {
                               <td>{price}</td>
                               <td
                                 style={{
-                                  color:
-                                    objects.quote.USD.percent_change_24h > 0
-                                      ? "green"
-                                      : "red"
-                                }}
-                              >
-                                {objects.quote.USD.percent_change_24h.toFixed(
-                                  2
-                                )}
+                                  color:objects.quote.USD.percent_change_24h > 0? "green": "red"}}>
+                                {objects.quote.USD.percent_change_24h.toFixed(2)}
                               </td>
                               <td>
                                 <input
@@ -84,7 +77,7 @@ const App = () => {
                                   onChange={e => {
                                     setCoinValue(e.target.value);
                                   }}
-                                />{" "}
+                                />
                                 <br />
                                 <button
                                   className="btn"

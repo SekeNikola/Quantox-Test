@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Preloader, Placeholder } from "react-preloading-screen";
+
 const CryptoDetails = props => {
   // STYLES
   const container ={
@@ -37,11 +39,13 @@ const CryptoDetails = props => {
   }, []);
 
   return (
+    <Preloader>
     <>
+
       {Array.isArray(data) &&
         data.map(objects => {
           if (objects.symbol === name) {
-            const fixCommas = (info)=>{
+            const fixCommas = (info) =>{
               if(info === objects.quote.USD.market_cap || info === objects.quote.USD.volume_24h ){
                 const parts = info.toString().split(".");
                 parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -74,13 +78,17 @@ const CryptoDetails = props => {
                     </tbody>
                     <thead/>
                   </table>
-
               </div>
-
             );
-          }
-        })}
+          };
+
+        })};
+
     </>
+        <Placeholder>
+          <span>Loading...</span>
+        </Placeholder>
+    </Preloader>
   );
 };
 export default CryptoDetails;
