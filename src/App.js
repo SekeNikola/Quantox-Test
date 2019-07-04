@@ -56,7 +56,7 @@ const App = () => {
                               <td>
                                 <Link
                                   target="_blank"
-                                  to={`/details/${objects.name}`}
+                                  to={`/details/${objects.symbol}`}
                                 >
                                   {objects.name}
                                 </Link>

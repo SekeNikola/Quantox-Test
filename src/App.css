@@ -1,3 +1,13 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+#root{
+  height: 100vh;
+  width: 100%
+}
+
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
@@ -18,4 +28,9 @@ tr:nth-child(even) {
 .btn, input{
   width: 100%;
   margin: 5px 0;
+}
+
+a{
+  text-decoration: none;
+  color: #000
 }
